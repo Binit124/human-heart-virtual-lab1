@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heart Blood Flow - Binit</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 14px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: white;
+  background: linear-gradient(140deg, #08152f, #173b65, #301b4b);
+}
+
+h1 { color: #ff7188; font-size: 25px; }
+h2 { color: #7cddff; }
+
+.credit {
+  color: #ffe082;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.panel {
+  max-width: 650px;
+  margin: 14px auto;
+  padding: 12px;
+  background: #ffffff10;
+  border: 1px solid #ffffff25;
+  border-radius: 18px;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chamber {
+  stroke: white;
+  stroke-width: 2;
+}
+
+.label {
+  fill: white;
+  font-size: 13px;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+.small {
+  fill: #e1edff;
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.bluePath {
+  stroke: #35a8ff;
+  stroke-width: 5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 9 10;
+  animation: flow 1s linear infinite;
+}
+
+.redPath {
+  stroke: #ff536b;
+  stroke-width: 5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 9 10;
+  animation: flow 1s linear infinite;
+}
+
+@keyframes flow {
+  to { stroke-dashoffset: -38; }
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 15px;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+  background: #e94363;
+}
+
+.blueButton { background: #147ed0; }
+.greenButton { background: #078f79; }
+
+#info {
+  min-height: 70px;
+  line-height: 1.6;
+  padding: 12px;
+  border-radius: 12px;
+  background: #07182d;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  padding: 10px;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+footer {
+  color: #ffe082;
+  margin: 22px 0 10px;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🫀 HUMAN HEART BLOOD FLOW</h1>
+<p>Class 10 Science Virtual Project</p>
+<p class="credit">✨ Made by Binit ✨</p>
+
+<div class="panel">
+<h2>Working Blood Circulation Diagram</h2>
+
+<svg viewBox="0 0 360 490"
+     xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+  <marker id="blueArrow" markerWidth="8" markerHeight="8"
+          refX="6" refY="3" orient="auto">
+    <path d="M0,0 L6,3 L0,6 Z" fill="#35a8ff"/>
+  </marker>
+  <marker id="redArrow" markerWidth="8" markerHeight="8"
+          refX="6" refY="3" orient="auto">
+    <path d="M0,0 L6,3 L0,6 Z" fill="#ff536b"/>
+  </marker>
+</defs>
+
+<!-- Lungs -->
+<rect x="95" y="20" width="170" height="48" rx="18"
+      fill="#71384f" stroke="#ff9eb4" stroke-width="2"/>
+<text x="180" y="40" class="label">LUNGS 🫁</text>
+<text x="180" y="55" class="small">Blood absorbs oxygen</text>
+
+<!-- Body -->
+<rect x="95" y="425" width="170" height="45" rx="15"
+      fill="#24588a" stroke="#78c6ff" stroke-width="2"/>
+<text x="180" y="444" class="label">BODY</text>
+<text x="180" y="458" class="small">Oxygen delivered to cells</text>
+
+<!-- Chambers -->
+<rect x="38" y="145" width="125" height="65" rx="13"
+      fill="#176fc0" class="chamber"/>
+<text x="100" y="171" class="label">RIGHT ATRIUM</text>
+<text x="100" y="190" class="small">Oxygen-poor</text>
+
+<rect x="38" y="250" width="125" height="65" rx="13"
+      fill="#176fc0" class="chamber"/>
+<text x="100" y="276" class="label">RIGHT VENTRICLE</text>
+<text x="100" y="295" class="small">To lungs</text>
+
+<rect x="197" y="145" width="125" height="65" rx="13"
+      fill="#d63855" class="chamber"/>
+<text x="259" y="171" class="label">LEFT ATRIUM</text>
+<text x="259" y="190" class="small">Oxygen-rich</text>
+
+<rect x="197" y="250" width="125" height="65" rx="13"
+      fill="#d63855" class="chamber"/>
+<text x="259" y="276" class="label">LEFT VENTRICLE</text>
+<text x="259" y="295" class="small">To body</text>
+
+<!-- Body to right atrium -->
+<path d="M95 425 L20 425 L20 177 L38 177"
+      class="bluePath" marker-end="url(#blueArrow)"/>
+
+<!-- Right atrium to right ventricle -->
+<path d="M100 210 L100 250"
+      class="bluePath" marker-end="url(#blueArrow)"/>
+
+<!-- Right ventricle to lungs -->
+<path d="M100 250 L100 115 L145 68"
+      class="bluePath" marker-end="url(#blueArrow)"/>
+
+<!-- Lungs to left atrium -->
+<path d="M215 68 L260 115 L260 145"
+      class="redPath" marker-end="url(#redArrow)"/>
+
+<!-- Left atrium to left ventricle -->
+<path d="M260 210 L260 250"
+      class="redPath" marker-end="url(#redArrow)"/>
+
+<!-- Left ventricle to body -->
+<path d="M260 315 L340 345 L340 447 L265 447"
+      class="redPath" marker-end="url(#redArrow)"/>
+
+<!-- Valve labels -->
+<text x="114" y="235" class="small">Tricuspid valve</text>
+<text x="180" y="104" class="small">Pulmonary arteries 🔵</text>
+<text x="180" y="128" class="small">Pulmonary veins 🔴</text>
+<text x="259" y="234" class="small">Mitral valve</text>
+<text x="288" y="330" class="small">Aorta</text>
+
+<text x="180" y="388" class="small">
+  Follow the moving arrows
+</text>
+<text x="180" y="403" class="small">
+  to understand blood circulation
+</text>
+
+</svg>
+
+<div class="legend">
+  <span><i class="dot" style="background:#35a8ff"></i>Oxygen-poor blood</span>
+  <span><i class="dot" style="background:#ff536b"></i>Oxygen-rich blood</span>
+</div>
+</div>
+
+<div class="panel">
+<h2>▶ Explore Blood Flow</h2>
+
+<button class="blueButton" onclick="show(0)">
+1. Body to Heart
+</button>
+
+<button class="blueButton" onclick="show(1)">
+2. Right Heart
+</button>
+
+<button onclick="show(2)">
+3. Heart to Lungs
+</button>
+
+<button onclick="show(3)">
+4. Lungs to Left Heart
+</button>
+
+<button onclick="show(4)">
+5. Left Heart to Body
+</button>
+
+<button class="greenButton" onclick="next()">
+Next Step ➜
+</button>
+
+<p id="info">
+Tap a button to see how blood flows through the heart.
+</p>
+</div>
+
+<footer>
+❤️ Virtual Science Project · Made by Binit ❤️
+</footer>
+
+<script>
+let stage = 0;
+
+const steps = [
+"🔵 BODY → VENAE CAVAE → RIGHT ATRIUM. Oxygen-poor blood returns from the body to the right atrium.",
+
+"🔵 RIGHT ATRIUM → TRICUSPID VALVE → RIGHT VENTRICLE. The valve helps prevent blood from flowing backward.",
+
+"🔵 RIGHT VENTRICLE → PULMONARY VALVE → PULMONARY ARTERIES → LUNGS. Blood travels to the lungs to exchange gases.",
+
+"🔴 LUNGS → PULMONARY VEINS → LEFT ATRIUM → MITRAL VALVE → LEFT VENTRICLE. Oxygen-rich blood returns to the left side of the heart.",
+
+"🔴 LEFT VENTRICLE → AORTIC VALVE → AORTA → BODY. Blood delivers oxygen to body tissues and the cycle repeats."
+];
+
+function show(i) {
+  stage = i;
+  document.getElementById("info").textContent = steps[i];
+}
+
+function next() {
+  stage = (stage + 1) % steps.length;
+  show(stage);
+}
+</script>
+
+</body>
+</html>
+
+
